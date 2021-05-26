@@ -1,0 +1,36 @@
+  
+  ----- Steps to include serverless prune plugins -----
+
+--1) Open the serverless.yml file add the following commands under the custom section in severless template
+
+prune:
+    automatic: true
+    number: 1
+
+the number will specify the number of versions that you would want to keep and deletes the remaining old versions
+
+--2) add the plugins "serverless-prune-plugin"
+
+
+
+The serverless.yml format for adding the plugin
+
+
+---- serverless-prune-plugin----
+
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  stage: ${opt:stage, self:provider.stage}
+  prune:
+    automatic: true
+    number: 1
+
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-prune-plugin
+  - serverless-deployment-bucket
+  
